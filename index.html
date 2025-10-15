@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sociology Exam Toolkit · Ritzer & Guppy (Canada)</title>
+  <meta name="description" content="Interactive study site for Introduction to Sociology (Canadian Version) by Ritzer & Guppy — Chapters 2, 4, 5, 6, 8, 9. Flashcards, quizzes, examples, video refs."/>
+  <style>
+    :root{
+      --pink:#ff7eb8;
+      --hot:#ff4da6;
+      --soft:#ffe6f2;
+      --ink:#2b2b2b;
+      --mint:#e8fff6;
+      --lav:#f7e9ff;
+      --ring:0 0 0 3px rgba(255,126,184,.35);
+      --radius:18px;
+    }
+    html,body{height:100%;}
+    body{font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; margin:0; color:var(--ink); background:linear-gradient(180deg,var(--soft),#fff 35%,var(--lav));}
+    header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.8);backdrop-filter: blur(10px); border-bottom:1px solid #ffd1ea}
+    .wrap{max-width:1050px;margin:0 auto;padding:16px;}
+    .brand{display:flex;align-items:center;gap:14px}
+    .kitty{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff 0 60%,#ffd1ea 60% 100%);position:relative;box-shadow:0 6px 14px rgba(0,0,0,.07)}
+    .kitty:before,.kitty:after{content:"";position:absolute;background:#000;border-radius:50%}
+    .kitty:before{width:6px;height:6px;left:14px;top:18px}
+    .kitty:after{width:6px;height:6px;right:14px;top:18px}
+    .bow{position:absolute;right:-2px;top:0;width:20px;height:20px;background:var(--pink);border-radius:50% 50% 50% 0/60% 60% 60% 0;transform:rotate(25deg);box-shadow:inset 0 -3px 0 #ff4da6}
+    h1{font-size:22px;margin:0}
+    .tag{font-size:12px;color:#666}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .search{flex:1;min-width:220px;display:flex;}
+    input[type="search"]{flex:1;padding:12px 14px;border-radius:999px;border:1px solid #ffd1ea;outline:none}
+    input[type="search"]:focus{box-shadow:var(--ring);}
+    .btn{border:none;background:var(--pink);color:white;padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:0 6px 12px rgba(255,77,166,.25);font-weight:600}
+    .btn:hover{filter:brightness(1.05)}
+    .grid{display:grid;grid-template-columns: repeat(auto-fit,minmax(280px,1fr));gap:18px;margin:18px 0}
+    .card{background:white;border-radius:var(--radius);padding:16px;box-shadow:0 10px 20px rgba(0,0,0,.05);border:1px solid #ffd1ea}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+    .tab{padding:8px 12px;border:1px solid #ffd1ea;border-radius:999px;background:#fff;cursor:pointer;font-weight:600}
+    .tab.active{background:var(--soft);color:#d8127d}
+    .pill{display:inline-block;padding:6px 10px;background:#fff0f7;border:1px solid #ffd1ea;border-radius:999px;font-size:12px;margin:4px 6px 0 0}
+    .flower{filter: drop-shadow(0 6px 10px rgba(255,77,166,.25));}
+    .section h2{margin:.2rem 0 .4rem 0}
+    .muted{color:#666;font-size:13px}
+    .flashcard{border:1px dashed #ffc1e2;border-radius:16px;padding:12px;margin:10px 0;background:linear-gradient(180deg,#fff, #fff7fb)}
+    .flashcard .q{font-weight:700}
+    .flashcard .a{display:none;margin-top:8px}
+    details{border:1px solid #ffd1ea;border-radius:12px;padding:10px;background:#fff}
+    summary{cursor:pointer;font-weight:700}
+    .quiz-item{margin:12px 0;padding:12px;border:1px solid #ffd1ea;border-radius:12px}
+    .quiz-item.correct{background: #e7fff3;border-color:#a6f4c5}
+    .quiz-item.wrong{background:#fff3f3;border-color:#ffd1d1}
+    .badge{background:#ffe6f2;border:1px solid #ffd1ea;border-radius:8px;padding:2px 8px;font-size:12px;}
+    .footer{margin:28px 0 60px}
+    .small{font-size:12px}
+    .video{aspect-ratio:16/9;width:100%;border:none;border-radius:16px;box-shadow:0 10px 20px rgba(0,0,0,.08)}
+    .cta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .progress{height:10px;background:#ffe6f2;border-radius:999px;overflow:hidden;border:1px solid #ffd1ea}
+    .progress>div{height:100%;background:linear-gradient(90deg,var(--pink),var(--hot));width:0%}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">
+        <div class="kitty"><div class="bow"></div></div>
+        <div>
+          <h1>♡ Sociology Exam Toolkit</h1>
+          <div class="tag">Ritzer & Guppy (Canadian Version) · Ch. 2, 4, 5, 6, 8, 9 · cute + pink + interactive</div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="search">
+          <input id="search" type="search" placeholder="Search key terms, concepts, or examples… (e.g., ‘sociological imagination’)"/>
+        </div>
+        <button class="btn" id="shuffle">Shuffle Flashcards ✿</button>
+        <button class="btn" id="reset">Reset Progress</button>
+      </div>
+      <div class="progress" aria-label="Study progress"><div id="progressbar"></div></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section card">
+      <div class="tabs" id="chapterTabs"></div>
+      <div id="chapterContent"></div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Flashcards <span class="badge" id="fcCount">0</span> 🌸</h2>
+        <div id="flashcards"></div>
+        <p class="muted small">Tip: click a card to reveal. Your reveal % updates the progress bar.</p>
+      </div>
+      <div class="card">
+        <h2>Quick Quiz ✧</h2>
+        <div id="quiz"></div>
+        <p class="muted small">Instant feedback with green/pink states. Quizzes are randomized each load.</p>
+      </div>
+      <div class="card">
+        <h2>Short-Answer Practice 📝</h2>
+        <details>
+          <summary>Exam-style prompts (write in your own words)</summary>
+          <ol id="prompts"></ol>
+        </details>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Concept Map 🌼</h2>
+        <canvas id="map" height="260" style="width:100%;"></canvas>
+        <p class="muted small">Hover the blossoms for chapter anchors.</p>
+      </div>
+      <div class="card">
+        <h2>Helpful Videos (external) ▶️</h2>
+        <p class="muted small">Curated overview videos aligned to the topics (YouTube links open in a new tab).</p>
+        <ul id="videos"></ul>
+      </div>
+      <div class="card">
+        <h2>Definitions Finder 🔎</h2>
+        <p>Type a term and get the chapter + one‑line definition pulled from this page’s dataset.</p>
+        <input id="defSearch" type="search" placeholder="e.g., ‘norms’, ‘agents of socialization’, ‘stratification’"/>
+        <div id="defResult" class="flashcard" style="display:none"></div>
+      </div>
+    </section>
+
+    <section class="card footer">
+      <h2>Sources & Notes</h2>
+      <ul class="small">
+        <li><strong>Ritzer, G. & Guppy, N.</strong> <em>Introduction to Sociology: Canadian Version</em> (SAGE). Table of contents used for chapter scope.</li>
+        <li>Open educational references used for concise definitions and practice prompts: OpenStax <em>Introduction to Sociology 3e</em>; BCcampus/OpenText (Canadian editions).</li>
+      </ul>
+      <p class="small muted">This page is a study aid. Always compare with your assigned edition and your instructor’s slides.</p>
+    </section>
+  </main>
+
+  <script>
+  // ---------- Data (concise, exam‑oriented, Canadian context where relevant) ----------
+  const chapters = [
+    {
+      id: 'ch2', name: 'Ch. 2 Thinking Sociologically', icon:'💭',
+      keyterms: [
+        {t:'Sociological imagination', d:'Link personal troubles to public issues; situates biography in history.'},
+        {t:'Theory', d:'A system of ideas explaining social phenomena; offers testable propositions.'},
+        {t:'Functionalism', d:'Society as interdependent parts seeking equilibrium and social order.'},
+        {t:'Conflict theory', d:'Power and inequality drive social change; focus on class, race, gender.'},
+        {t:'Symbolic interactionism', d:'Society created through everyday interactions and shared meanings.'},
+        {t:'Feminist sociology', d:'Analyzes gendered power relations and intersectionality in institutions.'},
+        {t:'Indigenous perspectives', d:'Relationality, community, land; critiques colonial structures in Canada.'},
+        {t:'Macrosociology', d:'Large‑scale structures and systems (e.g., state, economy).'},
+        {t:'Microsociology', d:'Face‑to‑face interaction, meaning‑making, identities.'},
+        {t:'Operationalization', d:'Translating concepts into measurable indicators.'},
+      ],
+      examples: [
+        'Link housing insecurity you see on campus to national housing policy and interest rates (public issue).',
+        'Use symbols like flags or jerseys to see how meaning organizes group belonging at a Huskies game.'
+      ],
+      quiz: [
+        {q:'Which perspective centers meaning‑making in everyday interaction?', a:'Symbolic interactionism', opts:['Functionalism','Conflict theory','Symbolic interactionism','Rational choice']},
+        {q:'“Personal troubles” become “public issues” when…', a:'they reflect broader social patterns beyond individuals', opts:['they cause feelings','they happen to friends','they involve technology','they are private']}
+      ],
+      prompts:[
+        'Define sociological imagination and apply it to student mental health in Canada.',
+        'Compare conflict and functionalist explanations of rising tuition.'
+      ],
+      videos:[
+        {title:'Sociological Imagination (overview)', url:'https://www.youtube.com/watch?v=QwV3t2M3ePY'},
+        {title:'Theoretical Perspectives Crash Course', url:'https://www.youtube.com/watch?v=ImpeMjJwPJE'}
+      ]
+    },
+    {
+      id: 'ch4', name: 'Ch. 4 Culture', icon:'🌸',
+      keyterms:[
+        {t:'Culture', d:'Shared beliefs, practices, and material objects guiding life.'},
+        {t:'Material culture', d:'Physical objects and technology (e.g., smartphones).'},
+        {t:'Nonmaterial culture', d:'Ideas, values, norms, language, symbols.'},
+        {t:'Norms', d:'Rules/expectations of behaviour (folkways, mores, laws).'},
+        {t:'Values', d:'Culturally defined standards of what is good/important.'},
+        {t:'Cultural relativism', d:'Evaluate cultures by their own standards, not one’s own.'},
+        {t:'Ethnocentrism', d:'Judging other cultures by one’s own cultural lens.'},
+        {t:'Subculture', d:'Distinct cultural patterns of a group within society.'},
+        {t:'Counterculture', d:'Subculture opposing dominant values/norms.'},
+        {t:'Hegemony', d:'Dominant ideology becomes “common sense”, masking power.'}
+      ],
+      examples:[
+        'Pumpkin‑spice season as seasonal consumption culture spread via media and retail logics.',
+        'Francophone/Anglophone bilingual signage as policy‑shaped language norms in Canada.'
+      ],
+      quiz:[
+        {q:'Viewing a culture by its own standards is called…', a:'Cultural relativism', opts:['Ethnocentrism','Culture shock','Cultural relativism','Acculturation']},
+        {q:'Clothes, food, and tech belong to…', a:'Material culture', opts:['Nonmaterial culture','Material culture','Values','Norms']}
+      ],
+      prompts:[
+        'Explain hegemony with a Canadian example from advertising or news.',
+        'Differentiate norms and values with two concrete campus examples.'
+      ],
+      videos:[
+        {title:'Culture: Material vs Nonmaterial', url:'https://www.youtube.com/watch?v=Z7xKk3xNg6E'}
+      ]
+    },
+    {
+      id: 'ch5', name: 'Ch. 5 Socialization & Interaction', icon:'🎀',
+      keyterms:[
+        {t:'Socialization', d:'Lifelong process of learning culture and roles.'},
+        {t:'Agents of socialization', d:'Family, peers, school, media, work, religion, state.'},
+        {t:'Role', d:'Expected behaviours for a status; role set and role conflict.'},
+        {t:'Status', d:'Social position (ascribed, achieved, master status).'},
+        {t:'Looking‑glass self', d:'We imagine how others see us and internalize judgements.'},
+        {t:'Dramaturgy', d:'Goffman: front stage/back stage impression management.'},
+        {t:'Total institution', d:'Controls daily life; resocialization (e.g., prisons).'},
+        {t:'Digital socialization', d:'Identity/interaction shaped by platforms and algos.'}
+      ],
+      examples:[
+        'Co‑op jobs teach professional norms (email tone, punctuality) beyond course content.',
+        'Instagram “close friends” as a back‑stage for identity curation.'
+      ],
+      quiz:[
+        {q:'Which is an achieved status?', a:'Graduate teaching assistant', opts:['Daughter','Graduate teaching assistant','Age 19','First Nations heritage']},
+        {q:'Goffman’s metaphor for everyday interaction is…', a:'Theatre performance', opts:['Game theory','Market exchange','Theatre performance','Biological evolution']}
+      ],
+      prompts:[
+        'Describe resocialization in moving from high school to university residence.',
+        'Apply the looking‑glass self to posting selfies and feedback loops.'
+      ],
+      videos:[
+        {title:'Agents of Socialization', url:'https://www.youtube.com/watch?v=xY9YF6g04I8'}
+      ]
+    },
+    {
+      id: 'ch6', name: 'Ch. 6 Organizations, Societies & the Global', icon:'🌍',
+      keyterms:[
+        {t:'Bureaucracy', d:'Formal organization with hierarchy, rules, specialization.'},
+        {t:'Rationalization', d:'Efficiency and calculability shaping institutions (Weber).'},
+        {t:'McDonaldization', d:'Ritzer: efficiency, calculability, predictability, control.'},
+        {t:'World‑systems theory', d:'Core–semi‑periphery–periphery divisions in the world economy.'},
+        {t:'Globalization', d:'Increasing interconnectedness of economies, culture, politics.'},
+        {t:'Network society', d:'Castells: networks as key structures of power and production.'}
+      ],
+      examples:[
+        'Food‑delivery apps standardize ratings and menus across cities (predictability + control).',
+        'Supply chains for Canadian groceries link core and periphery regions.'
+      ],
+      quiz:[
+        {q:'Which is NOT a McDonaldization dimension?', a:'Solidarity', opts:['Efficiency','Calculability','Predictability','Solidarity']},
+        {q:'World‑systems theory divides the globe into…', a:'core, semi‑periphery, periphery', opts:['north/south','core/semi‑periphery/periphery','east/west','developed/developing']}
+      ],
+      prompts:[
+        'Evaluate pros/cons of McDonaldization for Canadian healthcare or education.',
+        'Illustrate globalization using one product’s journey to a Saskatoon store.'
+      ],
+      videos:[
+        {title:'McDonaldization (explainer)', url:'https://www.youtube.com/watch?v=0u8QJgL0C9g'}
+      ]
+    },
+    {
+      id: 'ch8', name: 'Ch. 8 Social Inequality', icon:'💎',
+      keyterms:[
+        {t:'Stratification', d:'Structured inequalities among categories of people.'},
+        {t:'Class', d:'Economic position based on wealth, income, occupation.'},
+        {t:'Intersectionality', d:'Overlapping systems of oppression/privilege (e.g., race, gender).'},
+        {t:'Social mobility', d:'Movement between class positions (intra/intergenerational).'},
+        {t:'Meritocracy', d:'Rewards based on achievement; often mythologized.'},
+        {t:'Gini coefficient', d:'Measure of income inequality (0 equal, 1 unequal).'},
+        {t:'Poverty line/MBM', d:'Market Basket Measure used in Canada to define poverty.'}
+      ],
+      examples:[
+        'Tuition + housing costs shaping student debt and delayed milestones (marriage, home).',
+        'Income gaps by gender and race in Canadian labour markets.'
+      ],
+      quiz:[
+        {q:'The Gini coefficient measures…', a:'income inequality', opts:['inflation','income inequality','poverty rate','wealth tax']},
+        {q:'MBM in Canada is a measure of…', a:'poverty threshold based on essential baskets', opts:['wealth','inflation','poverty threshold based on essential baskets','consumption only']}
+      ],
+      prompts:[
+        'Contrast absolute vs relative poverty with Canadian examples.',
+        'Explain how intersectionality complicates “equal opportunity” claims.'
+      ],
+      videos:[
+        {title:'Social Stratification & Inequality', url:'https://www.youtube.com/watch?v=XY0QxnO2g4E'}
+      ]
+    },
+    {
+      id: 'ch9', name: 'Ch. 9 Race, Ethnicity & Migration (typical scope)', icon:'🧿',
+      keyterms:[
+        {t:'Race (social construct)', d:'Socially constructed categories tied to power and history.'},
+        {t:'Ethnicity', d:'Shared cultural heritage and ancestry; often self‑defined.'},
+        {t:'Racism', d:'Ideologies/practices that produce racial hierarchy.'},
+        {t:'Institutional racism', d:'Systemic patterns that produce racialized outcomes.'},
+        {t:'Colonialism/settler colonialism', d:'Domination and settlement displacing Indigenous peoples.'},
+        {t:'Multiculturalism (Canada)', d:'Policy framework recognizing cultural diversity.'}
+      ],
+      examples:[
+        'Truth and Reconciliation Calls to Action as responses to colonial harms.',
+        'Immigration points system shaping class and skill composition of newcomers.'
+      ],
+      quiz:[
+        {q:'Race is best understood as…', a:'a social construct with real effects', opts:['a fixed biological type','purely genetic','a social construct with real effects','a synonym for ethnicity']},
+        {q:'Institutional racism refers to…', a:'systemic rules producing unequal outcomes', opts:['personal prejudice','genetics','cultural festivals','language differences']}
+      ],
+      prompts:[
+        'Discuss multiculturalism’s promises and limits in Canada using one concrete case.',
+        'Explain institutional racism using an education or housing example.'
+      ],
+      videos:[
+        {title:'Race & Ethnicity overview', url:'https://www.youtube.com/watch?v=DWynJkN5HbQ'}
+      ]
+    }
+  ];
+
+  // ---------- UI Build ----------
+  const tabs = document.getElementById('chapterTabs');
+  const content = document.getElementById('chapterContent');
+  const flashWrap = document.getElementById('flashcards');
+  const quizWrap = document.getElementById('quiz');
+  const promptsWrap = document.getElementById('prompts');
+  const fcCount = document.getElementById('fcCount');
+  const progressbar = document.getElementById('progressbar');
+
+  let active = chapters[0].id;
+  let revealed = new Set(JSON.parse(localStorage.getItem('revealed')||'[]'));
+
+  function saveProgress(){ localStorage.setItem('revealed', JSON.stringify([...revealed])); updateProgress();}
+  function updateProgress(){ const total = chapters.reduce((n,ch)=>n+ch.keyterms.length,0); const pct = Math.round((revealed.size/total)*100); progressbar.style.width = pct+'%'; progressbar.title = pct+"% of flashcards revealed";}
+
+  function buildTabs(){
+    tabs.innerHTML = '';
+    chapters.forEach(ch=>{
+      const b = document.createElement('button');
+      b.className = 'tab'+(ch.id===active?' active':'');
+      b.textContent = `${ch.icon} ${ch.name}`;
+      b.onclick = ()=>{ active = ch.id; buildAll(); window.scrollTo({top:0,behavior:'smooth'}); };
+      tabs.appendChild(b);
+    });
+  }
+
+  function buildChapter(){
+    const ch = chapters.find(c=>c.id===active);
+    content.innerHTML = `
+      <h2>${ch.icon} ${ch.name}</h2>
+      <div class="pill">Key terms: ${ch.keyterms.length}</div>
+      <div class="pill">Quiz Qs: ${ch.quiz.length}</div>
+      <p class="muted">Every definition is concise and paired with daily‑life examples to anchor memory.</p>
+    `;
+  }
+
+  function buildFlashcards(){
+    const ch = chapters.find(c=>c.id===active);
+    flashWrap.innerHTML = '';
+    ch.keyterms.forEach((k, i)=>{
+      const id = `${ch.id}-${i}`;
+      const fc = document.createElement('div');
+      fc.className='flashcard';
+      fc.innerHTML = `<div class="q">${k.t}</div><div class="a">${k.d}</div>`;
+      fc.onclick = ()=>{ const a = fc.querySelector('.a'); const isHidden = a.style.display==='none' || a.style.display===''; a.style.display = isHidden?'block':'none'; if(isHidden){ revealed.add(id); saveProgress(); } };
+      if(revealed.has(id)) fc.querySelector('.a').style.display='block';
+      flashWrap.appendChild(fc);
+    });
+    fcCount.textContent = document.querySelectorAll('.flashcard').length;
+  }
+
+  function randPick(arr,n){ return [...arr].sort(()=>Math.random()-0.5).slice(0,n); }
+
+  function buildQuiz(){
+    const ch = chapters.find(c=>c.id===active);
+    quizWrap.innerHTML='';
+    randPick(ch.quiz, Math.min(5, ch.quiz.length)).forEach((qObj,idx)=>{
+      const box = document.createElement('div'); box.className='quiz-item';
+      box.innerHTML = `<div><strong>Q${idx+1}.</strong> ${qObj.q}</div>`;
+      const opts = randPick(qObj.opts, qObj.opts.length);
+      opts.forEach(opt=>{
+        const btn = document.createElement('button'); btn.className='btn'; btn.style.margin='8px 8px 0 0'; btn.textContent=opt;
+        btn.onclick = ()=>{
+          if(opt===qObj.a){ box.classList.add('correct'); box.classList.remove('wrong'); }
+          else{ box.classList.add('wrong'); box.classList.remove('correct'); }
+        };
+        box.appendChild(btn);
+      });
+      quizWrap.appendChild(box);
+    });
+  }
+
+  function buildPrompts(){
+    const ch = chapters.find(c=>c.id===active);
+    promptsWrap.innerHTML='';
+    ch.prompts.forEach(p=>{ const li=document.createElement('li'); li.textContent=p; promptsWrap.appendChild(li); });
+  }
+
+  // Simple concept map doodle
+  function drawMap(){
+    const c = document.getElementById('map'); const ctx=c.getContext('2d');
+    const nodes = [
+      {x:120,y:60,label:'Ch2',color:'#ff9ace'},
+      {x:340,y:60,label:'Ch4',color:'#ffc1e2'},
+      {x:560,y:60,label:'Ch5',color:'#ffd6e9'},
+      {x:200,y:190,label:'Ch6',color:'#ffd1ea'},
+      {x:420,y:190,label:'Ch8',color:'#ffd1f1'},
+      {x:640,y:190,label:'Ch9',color:'#ffd1ff'},
+    ];
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.strokeStyle = '#ffc1e2'; ctx.lineWidth=2;
+    const lines = [[0,1],[1,2],[0,3],[3,4],[4,5]]; // simple chain
+    lines.forEach(([i,j])=>{ ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke(); });
+    nodes.forEach(n=>{
+      const r=24; const grad = ctx.createRadialGradient(n.x-8,n.y-8,8,n.x,n.y,28); grad.addColorStop(0,'#fff'); grad.addColorStop(1,n.color);
+      ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(n.x,n.y,r,0,Math.PI*2); ctx.fill(); ctx.strokeStyle='#ff9ace'; ctx.stroke();
+      ctx.fillStyle = '#d8127d'; ctx.font='600 14px ui-sans-serif, system-ui'; ctx.textAlign='center'; ctx.fillText(n.label,n.x,n.y+4);
+    });
+  }
+
+  function buildVideos(){
+    const ul = document.getElementById('videos'); ul.innerHTML='';
+    const vids = chapters.flatMap(ch=>ch.videos.map(v=>({...v,chapter:ch.name})));
+    vids.forEach(v=>{
+      const li=document.createElement('li');
+      const a=document.createElement('a'); a.href=v.url; a.target='_blank'; a.rel='noopener'; a.textContent=`${v.title} — ${v.chapter}`; li.appendChild(a); ul.appendChild(li);
+    });
+  }
+
+  // Search across all keyterms
+  document.getElementById('search').addEventListener('input', e=>{
+    const q=e.target.value.toLowerCase();
+    const matches=[];
+    chapters.forEach(ch=>{
+      ch.keyterms.forEach((k,i)=>{ if(k.t.toLowerCase().includes(q) || k.d.toLowerCase().includes(q)) matches.push({ch,i,k}); })
+    });
+    flashWrap.innerHTML='';
+    if(q && matches.length){
+      matches.forEach(({ch,i,k})=>{
+        const id=`${ch.id}-${i}`;
+        const fc=document.createElement('div'); fc.className='flashcard';
+        fc.innerHTML = `<div class="q">${k.t} <span class='badge'>${ch.name}</span></div><div class="a">${k.d}</div>`;
+        fc.onclick=()=>{const a=fc.querySelector('.a'); const hid=a.style.display==='none'||a.style.display===''; a.style.display=hid?'block':'none'; if(hid){ revealed.add(id); saveProgress(); }};
+        flashWrap.appendChild(fc);
+      });
+      fcCount.textContent = matches.length;
+    } else { buildFlashcards(); fcCount.textContent = document.querySelectorAll('.flashcard').length; }
+  });
+
+  document.getElementById('defSearch').addEventListener('change', e=>{
+    const q=e.target.value.trim().toLowerCase();
+    const box=document.getElementById('defResult');
+    if(!q){ box.style.display='none'; return; }
+    for(const ch of chapters){
+      for(const [i,k] of ch.keyterms.entries()){
+        if(k.t.toLowerCase()===q){ box.style.display='block'; box.innerHTML=`<div class='q'>${k.t} <span class='badge'>${ch.name}</span></div><div class='a' style='display:block'>${k.d}</div>`; return; }
+      }
+    }
+    box.style.display='block'; box.innerHTML=`<div class='q'>No exact match</div><div class='a' style='display:block'>Try related keywords or check spelling.</div>`;
+  });
+
+  document.getElementById('shuffle').onclick = ()=>{ chapters.forEach(ch=>ch.keyterms.sort(()=>Math.random()-0.5)); buildFlashcards(); };
+  document.getElementById('reset').onclick = ()=>{ revealed.clear(); saveProgress(); buildFlashcards(); alert('Progress reset!'); };
+
+  function buildAll(){ buildTabs(); buildChapter(); buildFlashcards(); buildQuiz(); buildPrompts(); drawMap(); buildVideos(); updateProgress(); }
+  buildAll();
+  window.addEventListener('resize', drawMap);
+  </script>
+</body>
+</html>
