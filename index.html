@@ -443,7 +443,7 @@
     const box=document.getElementById('defResult');
     if(!q){ box.style.display='none'; return; }
     for(const ch of chapters){
-      for(const [i,k] of ch.keyterms.entries()){
+      for(const [i,k] of ch.keyterms.entries()){ 
         if(k.t.toLowerCase()===q){ box.style.display='block'; box.innerHTML=`<div class='q'>${k.t} <span class='badge'>${ch.name}</span></div><div class='a' style='display:block'>${k.d}</div>`; return; }
       }
     }
